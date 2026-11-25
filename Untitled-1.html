@@ -1,0 +1,617 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مرشد المواظبة</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
+    <style>/* إعدادات عامة */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Tahoma, Arial, sans-serif;
+    background-color: #f5f7f8;
+    color: #263238;
+    line-height: 1.8;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* رأس الصفحة */
+header {
+    background-color: #315b59;
+    color: white;
+    padding: 20px 0;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+header h1 {
+    font-size: 26px;
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #d6e8df;
+}
+
+/* الترحيب */
+.welcome {
+    text-align: center;
+    padding: 45px 15px;
+}
+
+.welcome h2 {
+    color: #315b59;
+    margin-bottom: 10px;
+}
+
+/* الحاسبة */
+.calculator {
+    background-color: white;
+    padding: 30px;
+    margin: 20px auto;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.07);
+    max-width: 700px;
+}
+
+.calculator h2,
+.courses h2 {
+    color: #315b59;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+label {
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccd5d4;
+    border-radius: 7px;
+    font-size: 16px;
+    background-color: white;
+}
+
+input:focus,
+select:focus {
+    outline: 2px solid #79aaa0;
+    border-color: #315b59;
+}
+
+button {
+    background-color: #315b59;
+    color: white;
+    border: none;
+    padding: 13px;
+    border-radius: 7px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #244644;
+}
+
+.reset-button {
+    background-color: #778583;
+}
+
+.reset-button:hover {
+    background-color: #5e6b69;
+}
+
+/* النتيجة */
+.result {
+    background-color: #edf5f2;
+    border-radius: 9px;
+    padding: 20px;
+    margin-top: 25px;
+    text-align: center;
+}
+
+.result h3 {
+    color: #315b59;
+    margin-bottom: 10px;
+}
+
+.result p {
+    margin: 6px 0;
+}
+
+.progress-container {
+    width: 100%;
+    height: 16px;
+    background-color: #dce5e2;
+    border-radius: 20px;
+    margin: 15px 0;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0;
+    background-color: #4c9280;
+    border-radius: 20px;
+    transition: width 0.3s;
+}
+
+.status-safe {
+    color: #26734d;
+    font-weight: bold;
+}
+
+.status-warning {
+    color: #a36b00;
+    font-weight: bold;
+}
+
+.status-danger {
+    color: #b3261e;
+    font-weight: bold;
+}
+
+/* جدول المقررات */
+.courses {
+    background-color: white;
+    padding: 25px;
+    margin: 30px auto;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.07);
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 550px;
+}
+
+th,
+td {
+    border: 1px solid #dce3e1;
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background-color: #315b59;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f3f7f5;
+}
+
+/* صفحات عن الموقع والتواصل */
+.info-card {
+    background-color: white;
+    padding: 30px;
+    margin: 40px auto;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.07);
+}
+
+.info-card h2 {
+    color: #315b59;
+    margin-bottom: 15px;
+}
+
+.info-card p {
+    margin-bottom: 12px;
+}
+
+.info-card ul {
+    padding-right: 25px;
+}
+
+/* أسفل الصفحة */
+footer {
+    background-color: #315b59;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+/* تنسيق الجوال */
+@media (max-width: 650px) {
+    header .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav {
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .calculator,
+    .courses,
+    .info-card {
+        padding: 18px;
+    }
+
+    .welcome {
+        padding: 30px 10px;
+    }
+}
+</style>
+ <script> // تحديد عناصر الصفحة
+const absenceForm = document.getElementById("absenceForm");
+const result = document.getElementById("result");
+const coursesTable = document.getElementById("coursesTable");
+
+// تخزين بيانات المقررات
+let courses = [];
+
+// عند إرسال النموذج
+absenceForm.addEventListener("submit", function(event) {
+
+    // منع تحديث الصفحة
+    event.preventDefault();
+
+    // قراءة البيانات
+    const studentName =
+        document.getElementById("studentName").value.trim();
+
+    const courseName =
+        document.getElementById("courseName").value;
+
+    const totalLectures =
+        Number(document.getElementById("totalLectures").value);
+
+    const absences =
+        Number(document.getElementById("absences").value);
+
+    const absenceLimit =
+        Number(document.getElementById("absenceLimit").value);
+
+    // التحقق من صحة البيانات
+    if (studentName === "" || courseName === "") {
+        alert("يرجى إدخال اسم الطالبة واختيار المقرر.");
+        return;
+    }
+
+    if (
+        !Number.isInteger(totalLectures) ||
+        !Number.isInteger(absences) ||
+        totalLectures <= 0 ||
+        absences < 0
+    ) {
+        alert("يرجى إدخال أرقام صحيحة.");
+        return;
+    }
+
+    if (absences > totalLectures) {
+        alert("عدد الغيابات لا يمكن أن يتجاوز عدد المحاضرات.");
+        return;
+    }
+
+    // حساب نسبة الغياب
+    const absencePercentage =
+        (absences / totalLectures) * 100;
+
+    // حساب عدد الغيابات عند الوصول إلى حد الحرمان
+    const banAt =
+        Math.ceil(totalLectures * absenceLimit / 100);
+
+    // حساب الغيابات المتبقية للوصول إلى حد الحرمان
+    const remainingToBan =
+        Math.max(0, banAt - absences);
+
+    // حساب عدد الغيابات الإضافية الآمنة
+    const safeAbsences =
+        absences >= banAt
+            ? 0
+            : Math.max(0, remainingToBan - 1);
+
+    // تحديد حالة الطالبة
+    let status = "";
+    let statusClass = "";
+
+    if (absences >= banAt) {
+        status = "وصلتِ إلى حد الحرمان";
+        statusClass = "status-danger";
+    } else if (absencePercentage >= absenceLimit * 0.8) {
+        status = "تنبيه: اقتربتِ من حد الحرمان";
+        statusClass = "status-warning";
+    } else {
+        status = "وضعك آمن";
+        statusClass = "status-safe";
+    }
+
+    // عرض النتيجة
+    result.innerHTML = `
+        <h3>نتيجة المواظبة</h3>
+
+        <p><strong>اسم الطالبة:</strong> ${escapeHTML(studentName)}</p>
+
+        <p><strong>المقرر:</strong> ${escapeHTML(courseName)}</p>
+
+        <p>
+            <strong>نسبة الغياب:</strong>
+            ${absencePercentage.toFixed(2)}%
+        </p>
+
+        <div class="progress-container">
+            <div class="progress-bar"
+                 style="width: ${Math.min(absencePercentage, 100)}%">
+            </div>
+        </div>
+
+        <p class="${statusClass}">${status}</p>
+
+        <p>
+            <strong>حد الحرمان:</strong>
+            ${absenceLimit}%
+        </p>
+
+        <p>
+            <strong>عدد الغيابات عند حد الحرمان:</strong>
+            ${banAt}
+        </p>
+
+        <p>
+            <strong>الغيابات الإضافية الآمنة قبل بلوغ الحد:</strong>
+            ${safeAbsences}
+        </p>
+    `;
+
+    // حفظ بيانات المقرر
+    const existingCourse = courses.find(
+        course => course.name === courseName
+    );
+
+    if (existingCourse) {
+        existingCourse.total = totalLectures;
+        existingCourse.absences = absences;
+        existingCourse.percentage = absencePercentage;
+    } else {
+        courses.push({
+            name: courseName,
+            total: totalLectures,
+            absences: absences,
+            percentage: absencePercentage
+        });
+    }
+
+    // تحديث الجدول
+    updateCoursesTable();
+
+});
+
+
+// تحديث جدول المقررات
+function updateCoursesTable() {
+
+    coursesTable.innerHTML = "";
+
+    if (courses.length === 0) {
+        coursesTable.innerHTML = `
+            <tr>
+                <td colspan="4">لا توجد بيانات حتى الآن</td>
+            </tr>
+        `;
+        return;
+    }
+
+    courses.forEach(function(course) {
+
+        const row = document.createElement("tr");
+
+        const nameCell = document.createElement("td");
+        nameCell.textContent = course.name;
+
+        const totalCell = document.createElement("td");
+        totalCell.textContent = course.total;
+
+        const absencesCell = document.createElement("td");
+        absencesCell.textContent = course.absences;
+
+        const percentageCell = document.createElement("td");
+        percentageCell.textContent =
+            course.percentage.toFixed(2) + "%";
+
+        row.appendChild(nameCell);
+        row.appendChild(totalCell);
+        row.appendChild(absencesCell);
+        row.appendChild(percentageCell);
+
+        coursesTable.appendChild(row);
+    });
+}
+
+
+// حماية النصوص التي تدخلها الطالبة
+function escapeHTML(value) {
+    return value.replace(/[&<>"']/g, function(character) {
+        const characters = {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#039;"
+        };
+
+        return characters[character];
+    });
+}
+
+
+// إعادة تعيين النموذج والنتيجة
+absenceForm.addEventListener("reset", function() {
+
+    courses = [];
+
+    result.innerHTML = `
+        <h3>نتيجة الغياب</h3>
+        <p>أدخلي البيانات ثم اضغطي على زر الحساب.</p>
+    `;
+
+    coursesTable.innerHTML = `
+        <tr>
+            <td colspan="4">لا توجد بيانات حتى الآن</td>
+        </tr>
+    `;
+});</script>  
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <h1>مرشد المواظبة</h1>
+
+            <nav>
+                <a href="index.html">الرئيسية</a>
+                <a href="about.html">عن الموقع</a>
+                <a href="contact.html">تواصل معنا</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section class="welcome">
+            <h2>مرحبًا بك في مرشد المواظبة</h2>
+            <p>
+                موقع يساعد الطالبات على متابعة نسبة الغياب
+                ومعرفة حالة المواظبة والتنبيه عند الاقتراب من حد الحرمان.
+            </p>
+        </section>
+
+        <section class="calculator">
+            <h2>حساب نسبة الغياب</h2>
+
+            <form id="absenceForm">
+
+                <label for="studentName">اسم الطالبة:</label>
+                <input
+                    type="text"
+                    id="studentName"
+                    placeholder="اكتبي اسم الطالبة"
+                    required
+                >
+
+                <label for="courseName">اسم المقرر:</label>
+                <select id="courseName" required>
+                    <option value="">اختاري المقرر</option>
+                    <option value="انجل 113">المقرر الأول</option>
+                    <option value="رياد 262">المقرر الثاني</option>
+                    <option value="برمج 232">المقرر الثالث</option>
+                    <option value="تجار 202">المقرر الرابع</option>
+                    <option value="تجار 201">المقرر الخامس</option>
+                    <option value="تجار 203">المقرر السادس</option>
+                </select>
+
+                <label for="totalLectures">عدد المحاضرات الكلي:</label>
+                <input
+                    type="number"
+                    id="totalLectures"
+                    min="1"
+                    placeholder="مثال: 32"
+                    required
+                >
+
+                <label for="absences">عدد مرات الغياب:</label>
+                <input
+                    type="number"
+                    id="absences"
+                    min="0"
+                    placeholder="مثال: 4"
+                    required
+                >
+
+                <label for="absenceLimit">حد الحرمان:</label>
+                <select id="absenceLimit">
+                    <option value="25">25%</option>
+                    <option value="20">20%</option>
+                    <option value="15">15%</option>
+                </select>
+
+                <button type="submit">احسبي نسبة الغياب</button>
+                <button type="reset" class="reset-button">إعادة تعيين</button>
+
+            </form>
+
+            <div id="result" class="result" aria-live="polite">
+                <h3>نتيجة الغياب</h3>
+                <p>أدخلي البيانات ثم اضغطي على زر الحساب.</p>
+            </div>
+
+        </section>
+
+        <section class="courses">
+            <h2>ملخص المقررات</h2>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>المقرر</th>
+                            <th>عدد المحاضرات</th>
+                            <th>عدد الغيابات</th>
+                            <th>نسبة الغياب</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="coursesTable">
+                        <tr>
+                            <td colspan="4">لا توجد بيانات حتى الآن</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>مرشد المواظبة © 2026</p>
+        <p>إعداد الطالبات: عبير الشمري ، أصايل الشرمي ، لمياءالشهري ، رهف الدوسري </p>
+    </footer>
+
+</body>
+</html>
